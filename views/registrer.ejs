@@ -3,17 +3,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <form action="" method="post">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email">
-        <label for="passord">Passord</label>
-        <input type="password" name="passord" id="passord">
-        <label for="gjenta passord">Gjenta passord</label>
-        <input type="password" name="gjentaPassord" id="passord">
-        <button>Registrer bruker</button>
-    </form>
-    <a href="/">Allerede en bruker? Logg inn</a>
+    <div class="wrapper">
+        <h1 id="overskrift">Registrer deg</h1>
+        <form action="" method="post">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email">
+            <label for="passord">Passord</label>
+            <input type="password" name="passord" id="passord">
+            <label for="gjenta passord">Gjenta passord</label>
+            <input type="password" name="gjentaPassord" id="passord">
+            <button id="register">Registrer bruker</button>
+        </form>
+        <a href="/" id="loginhref">Allerede en bruker? Logg inn</a>
+    </div>
 </body>
 </html>
