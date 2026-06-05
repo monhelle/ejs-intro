@@ -74,9 +74,9 @@ app.post("/glemt-passord", async (req, res) => {
   let userEmail = user.email;
 
   const sendEmail = await transporter.sendMail({
-    to: "daisha.kerluke30@ethereal.email",
+    to: process.env.SMTP_EMAIL,
     // to: userEmail,
-    from: "daisha.kerluke30@ethereal.email",
+    from: process.env.SMTP_EMAIL,
     subject:"Glemt passord",
     html: `
     <a href="http://localhost:4000/reset-passord?email=${userEmail}">
