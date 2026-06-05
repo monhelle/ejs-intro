@@ -4,28 +4,33 @@ const mongodb = require("mongoose");
 const nodemailer = require("nodemailer"); //importer nodemailer
 const User = require("./models/User");
 const app = express();
+require("dotenv").config() //importerte dotenv
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mongodb.connect("mongodb://localhost:27017/ejs"); //notat
-
+mongodb.connect(process.env.DB_URL); //.envvariabel
 
 
 //lage en transport (tunnel)
 const transporter = nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
-    port: 587,
+    host: process.env.SMTP_HOST,
+    port: process.env.SMTP_PORT,
     auth: {
-        user: 'daisha.kerluke30@ethereal.email',
-        pass: 'SNPTFBVDN9qZ5ByjpK'
+        user: process.env.SMTP_EMAIL, //bytt user email
+        pass: process.env.SMTP_PASS // bytt passord
     }
 });
 
 app.get("/", (req, res) => {
   res.render("index");
 });
+
+app.get("/login", (req, res) => {
+  res.render("index");
+});
+
 app.get("/registrer", (req, res) => {
   res.render("registrer");
 });
@@ -41,6 +46,7 @@ app.get("/glemt-passord", (req, res) => { // banenavnet
 app.get("/reset-passord", (req, res) => { // banenavnet
   res.render("resetPassord"); //filnavnet
 });
+
 
 app.post("/reset-passord", async (req, res) => {
   const { passord, gjentapassord } = req.body;
@@ -130,7 +136,10 @@ app.post("/registrer", async (req, res) => {
 });
 
 
+//ALLER SISTE APP.GET
+app.get("*s", (req, res) => {
+  res.render("index")
+})
 
 
-
-app.listen(4000);
+app.listen(process.env.PORT);
